@@ -1,0 +1,14 @@
+{
+  "name": "camselector",
+  "version": "1.0.0",
+  "description": "S3 CAM Selector - Space Traffic Management",
+  "main": "server.js",
+  "author": "Cailean Welsh",
+  "license": "MIT",
+  "dependencies": {
+    "@angular/cli": "^9.0.7",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.4",
+    "body-parser": "~1.15.2"
+  }
+}
