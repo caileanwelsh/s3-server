@@ -1,5 +1,5 @@
 # Include node image
-FROM node:13
+FROM node:13 as builder
 
 # Where app will run
 RUN mkdir -p /usr/src/app
@@ -8,13 +8,21 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 #copies our app locally into build location + dependecy definitions
-COPY package.json /usr/src/app
+COPY package*.json ./
 
 #installs dependencies
 RUN npm install
 
 #gets all code for app
 COPY . /usr/src/app
+
+
+
+#Multi-build Making a smaller container 
+FROM node:13-alpine
+WORKDIR /usr/src/app
+
+COPY --from=builder /usr/src/app/ .
 
 #exposes port for access 
 EXPOSE 3000
