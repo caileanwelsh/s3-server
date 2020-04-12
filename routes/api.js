@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const dbHost = 'mongodb://localhost/camselector';
+const dbHost = 'mongodb://localhost:27017/camselector';
 
 mongoose.connect(dbHost, {useNewUrlParser: true});
 
