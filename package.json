@@ -9,6 +9,6 @@
     "@angular/cli": "^9.0.7",
     "body-parser": "~1.15.2",
     "express": "^4.17.1",
-    "mongoose": "^4.13.20"
+    "mongoose": "^5.7.5"
   }
 }
