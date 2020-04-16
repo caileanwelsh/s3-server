@@ -1,32 +1,22 @@
+'use strict';
 // dependencies
-const express = require('express');
-const path = require('path');
-const http = require('http');
-const bodyParser = require('body-parser');
+const express = require('express'),
+    app = express(),
+    mongoose = require('mongoose');
 
+// connect DB
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/s3db', { useNewUrlParser: true, useUnifiedTopology: true });
+// load models
+require('./api/models/models');
 
 // fetches routes
-const api = require('./routes/api');
-
-const app = express();
-
-// parser for JSON
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-
-// Allows Angular App to communicate with express server
-app.use(function(re,res,next){
-    res.header("Access-Control-Allow-Origin", "*")
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-    next()
-})
-
-// set API routes
-app.use('/', api);
+const api = require('./api/routes/index');
+// register API routes
+app.use('/api', api);
 
 // Get port and store
 const port = process.env.PORT || '3000';
 app.set('port', port);
 
-const server = http.createServer(app);
-server.listen(port, () => console.log(`API running on localhost:${port}`));
+app.listen(port, () => console.log(`API running on localhost:${port}`));

@@ -16,14 +16,6 @@ RUN npm install
 #gets all code for app
 COPY . /usr/src/app
 
-
-
-#Multi-build Making a smaller container 
-FROM node:13-alpine
-WORKDIR /usr/src/app
-
-COPY --from=builder /usr/src/app/ .
-
 #exposes port for access 
 EXPOSE 3000
 
