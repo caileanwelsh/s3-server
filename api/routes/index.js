@@ -6,7 +6,7 @@ const express = require('express'),
 
     // Allows Angular App to communicate with express server
     router.use(function(req,res,next){
-        res.header("Access-Control-Allow-Origin", "http://localhost:4200")
+        res.header("Access-Control-Allow-Origin", "*")
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
         next()
     })
@@ -15,9 +15,8 @@ const express = require('express'),
     router.use(bodyParser.urlencoded({extended:true}));
     router.use(bodyParser.json());
 
-    // route format
+    // routes
     router.get('/incidents', incidents.list_all_incidents);
-    
-    router.post('/incidents', incidents.list_an_incident);
+    router.post('/incidents', incidents.create_an_incident);
 
     module.exports = router;
